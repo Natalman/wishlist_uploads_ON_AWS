@@ -19,7 +19,6 @@ def place_list(request):
         place = form.save(commit=False)
         place.user = request.user
         if form.is_valid():
-            place.save()
             return redirect('place_list')
 
     # If not a POST request, or the form is not valid, display the page
@@ -73,7 +72,9 @@ def place_details(request, place_pk):
 
             place.photo = updated_place.photo
 
-            place.save()
+            place.save(update_fields=['notes', 'date_visited', 'photo'])
+            #place.save(update_fields=list(Place._meta.get_fields()))  # need as strigs
+
             messages.info(request, 'Trip information updated!')
 
         else:

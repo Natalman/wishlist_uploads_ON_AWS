@@ -12,6 +12,4 @@ class TripReviewForm(forms.ModelForm):
     class Meta:
         model = Place
         fields = ('notes', 'date_visited', 'photo')
-        # widgets = {
-        #     'photo': FileInput()
-        # }
+    
