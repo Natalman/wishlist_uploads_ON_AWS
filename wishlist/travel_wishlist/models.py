@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+import logging as log
+
 # Create your models here.
 
 class Place(models.Model):
@@ -12,5 +14,14 @@ class Place(models.Model):
     photo = models.ImageField(upload_to='images/', blank=True, null=True)
 
 
+    def post_delete(self):
+        log.info('post delete')
+        # Delete photo associated with this model 
+
+    def post_save(self):
+        log.info('post save')
+        # TODO if photo updated, delete old photo
+
+
     def __str__(self):
-        return '%d: %s visited? %s' % (self.pk, self.name, self.visited)
+        return 'Place pk %d, name %s, visited? %s' % (self.pk, self.name, self.visited)

@@ -44,3 +44,7 @@ a:link, a:visited {
 .messages {
   background-color: green;
 }
+
+.delete {
+  background-color: red;  /* for danger! */
+}

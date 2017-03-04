@@ -35,4 +35,10 @@
   <h2>You have not visited {{ place.name }} yet.</h2>
 {% endif %}
 
+<form action="{% url 'delete_place' %}" method="POST">
+  {% csrf_token %}
+  <input type="hidden" name="place_pk" value="{{ place.pk }}">
+  <button type=submit class="delete">Delete</button>
+</form>
+
 {% endblock %}

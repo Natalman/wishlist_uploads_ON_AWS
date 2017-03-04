@@ -47,6 +47,14 @@ def place_is_visited(request):
 
 
 @login_required
+def delete_place(request):
+    pk = request.POST['place_pk']
+    place = get_object_or_404(Place, pk=pk)
+    place.delete()
+    return redirect('place_list')
+
+
+@login_required
 def place_details(request, place_pk):
 
     place = get_object_or_404(Place, pk=place_pk)
