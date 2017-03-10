@@ -47,4 +47,5 @@ a:link, a:visited {
 
 .delete {
   background-color: red;  /* for danger! */
+  margin 10px 0 10px 0;
 }

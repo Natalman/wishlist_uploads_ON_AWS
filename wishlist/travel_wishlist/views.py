@@ -61,19 +61,9 @@ def place_details(request, place_pk):
 
     if request.method == 'POST':
 
-        # get a copy of the object so have a reference to the old photo,
-        # just in case it needs to be deleted; user saves new photo or clears old one.
-        old_place = get_object_or_404(Place, pk=place_pk)
-
         form = TripReviewForm(request.POST, request.FILES, instance=place)
         if form.is_valid():
-
-            # If there was a photo added or removed, delete any old photo
-            if 'photo' in form.changed_data:
-                photo_manager.delete_photo(old_place.photo)
-
-            form.save()
-
+            form.save()      # Signals take care of deleting old photos, if needed
             messages.info(request, 'Trip information updated!')
 
         else:
